@@ -347,6 +347,46 @@ async function pushOverdue() {
     }
 }
 
+// ==================== CLEAR RESULTS ====================
+function clearResults() {
+    // Reset data
+    parsedTasks = [];
+    overdueTasks = [];
+
+    // Clear file input
+    var fileInput = document.getElementById('fileInput');
+    if (fileInput) fileInput.value = '';
+
+    // Clear upload status
+    var uploadStatus = document.getElementById('uploadStatus');
+    if (uploadStatus) uploadStatus.innerHTML = '';
+
+    // Hide results area
+    var resultsArea = document.getElementById('resultsArea');
+    if (resultsArea) resultsArea.style.display = 'none';
+
+    // Clear summary cards
+    var summaryCards = document.getElementById('summaryCards');
+    if (summaryCards) summaryCards.innerHTML = '';
+
+    // Clear overdue table
+    var overdueTable = document.getElementById('overdueTable');
+    if (overdueTable) overdueTable.innerHTML = '';
+
+    // Clear push status
+    var pushStatus = document.getElementById('pushStatus');
+    if (pushStatus) pushStatus.innerHTML = '';
+
+    // Disable push button
+    var pushBtn = document.getElementById('pushBtn');
+    if (pushBtn) pushBtn.disabled = true;
+
+    // Reset step indicator
+    updateStep(3, 'pending');
+
+    showToast('已清空扫描结果', 'info');
+}
+
 // ==================== DOWNLOAD SCRIPT ====================
 function downloadScript() {
     var wh = localStorage.getItem('yzj_webhook') || 'YOUR_WEBHOOK_URL_HERE';

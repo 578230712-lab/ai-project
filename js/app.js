@@ -168,10 +168,10 @@ function parseTasks(rows) {
     var headers = rows[0];
     var colMap = {};
     var keywords = {
-        name: ['任务名称', '任务名', '名称', '标题', '需求描述', '问题/需求描述', '问题', 'name', 'task'],
-        person: ['负责人', '责任人', '处理人', '提出人', 'owner', 'assignee'],
+        name: ['任务名称', '任务名', '名称', '标题', '需求描述', 'name', 'task'],
+        person: ['负责人', '责任人', '处理人', 'owner', 'assignee'],
         status: ['状态', '进度', 'status', 'state'],
-        deadline: ['截止日期', '截止时间', '预计解决时间', '解决时间', 'deadline', 'due', '日期'],
+        deadline: ['截止日期', '截止时间', 'deadline', 'due'],
         priority: ['优先级', '重要程度', 'priority']
     };
 
@@ -268,10 +268,10 @@ function parseTasks(rows) {
             var priClass = (t.priority.toLowerCase().indexOf('重要') > -1 || t.priority.toLowerCase().indexOf('高') > -1) ? 'text-orange-400' : 'text-slate-400';
             return '<tr class="border-b border-white/5 hover:bg-white/5">' +
                 '<td class="py-3 px-4 text-sm text-white">' + escHtml(t.name) + '</td>' +
-                '<td class="py-3 px-4 text-sm text-slate-300">' + escHtml(t.person) || '-' + '</td>' +
-                '<td class="py-3 px-4 text-sm text-slate-400">' + escHtml(t.status) || '-' + '</td>' +
+                '<td class="py-3 px-4 text-sm text-slate-300">' + (escHtml(t.person) || '-') + '</td>' +
+                '<td class="py-3 px-4 text-sm text-slate-400">' + (escHtml(t.status) || '-') + '</td>' +
                 '<td class="py-3 px-4 text-sm text-red-400 font-medium">' + formatDate(t.deadline) + '</td>' +
-                '<td class="py-3 px-4 text-sm ' + priClass + '">' + escHtml(t.priority) || '-' + '</td>' +
+                '<td class="py-3 px-4 text-sm ' + priClass + '">' + (escHtml(t.priority) || '-') + '</td>' +
                 '</tr>';
         }).join('');
         if (overdueTable) {
